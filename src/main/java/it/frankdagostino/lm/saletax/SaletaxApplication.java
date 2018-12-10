@@ -1,12 +1,16 @@
 package it.frankdagostino.lm.saletax;
 
-import it.frankdagostino.lm.saletax.entity.*;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.ArrayList;
-import java.util.List;
+import it.frankdagostino.lm.saletax.entity.ProductCategory;
+import it.frankdagostino.lm.saletax.entity.Product;
+import it.frankdagostino.lm.saletax.entity.TaxableFactory;
+import it.frankdagostino.lm.saletax.entity.Taxable;
 
 @SpringBootApplication
 public class SaletaxApplication implements CommandLineRunner {
@@ -18,37 +22,16 @@ public class SaletaxApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		List<Product> products = mockCart1();
-		List<Taxable> taxables = new ArrayList<>();
+		List<Product> products = Product.mockProducts1();
+		products.addAll(Product.mockProducts2());
+		products.addAll(Product.mockProducts3());
 
-		products.forEach(product -> taxables.add(ProductFactory.getTaxable(product)));
-
-		taxables.forEach(taxable -> {
-			System.out.println(taxable.getClass() + " | " + taxable.getDesc()+ " price=" + taxable.getPrice() + " tax=" + taxable.getTax() + " final price=" + taxable.getFinalPrice());
+		products.forEach(product -> {
+			System.out.println(TaxableFactory.getTaxable(product).toString());
 		});
-	}
 
-	private List<Product> mockCart1(){
-		List<Product> products = new ArrayList<>();
-		products.add(Product.builder().desc("book").category(Category.BOOK).price(12.49).build());
-		products.add(Product.builder().desc("music CD").category(Category.OTHER).price(14.99).build());
-		products.add(Product.builder().desc("chocolate bar").category(Category.FOOD).price(0.85).build());
-		products.add(Product.builder().desc("importaed box of chocolates").category(Category.FOOD).imported(true).price(10).build());
-		products.add(Product.builder().desc("imported bottle of perfume").category(Category.OTHER).imported(true).price(new Float(47.5)).build());
-		return products;
+		
 	}
+	
 
-	private List<Product> mockCart2(){
-		List<Product> products = new ArrayList<>();
-		products.add(Product.builder().desc("importaed box of chocolates").category(Category.FOOD).imported(true).price(10).build());
-		products.add(Product.builder().desc("imported bottle of perfume").category(Category.OTHER).imported(true).price(new Float(47.5)).build());
-		return products;
-	}
-
-	private List<Product> mockCart3(){
-		List<Product> products = new ArrayList<>();
-		products.add(Product.builder().desc("importaed box of chocolates").category(Category.FOOD).imported(true).price(10).build());
-		products.add(Product.builder().desc("imported bottle of perfume").category(Category.OTHER).imported(true).price(new Float(47.5)).build());
-		return products;
-	}
 }

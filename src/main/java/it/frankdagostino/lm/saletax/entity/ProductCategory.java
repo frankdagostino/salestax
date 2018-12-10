@@ -1,6 +1,6 @@
 package it.frankdagostino.lm.saletax.entity;
 
-public enum Category {
+public enum ProductCategory {
     FOOD("FOOD"),
     BOOK("BOOK"),
     MEDICAL("MEDICAL"),
@@ -8,7 +8,7 @@ public enum Category {
 
     private final String category;
 
-    Category(final String category) {
+    ProductCategory(final String category) {
         this.category = category;
     }
 
