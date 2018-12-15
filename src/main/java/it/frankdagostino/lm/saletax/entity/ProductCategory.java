@@ -12,9 +12,6 @@ public enum ProductCategory {
         this.category = category;
     }
 
-    /* (non-Javadoc)
-     * @see java.lang.Enum#toString()
-     */
     @Override
     public String toString() {
         return this.category;

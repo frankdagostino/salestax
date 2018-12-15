@@ -67,7 +67,8 @@ public class Product implements Taxable {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append(this.getClass().getSimpleName() + " | ");
+		builder.append(this.getClass().getSimpleName());
+		builder.append(" | ");
 		builder.append("desc=");
 		builder.append(getDesc());
 		builder.append(", price=");

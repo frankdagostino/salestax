@@ -38,7 +38,7 @@ public class SaletaxApplicationTests {
         assertTrue(cart.getTotalPrice() == 65.15);
     }
 
-    //@Test
+    @Test
     public void cart3() {
         Cart cart = new Cart();
 

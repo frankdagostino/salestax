@@ -26,12 +26,26 @@ public abstract class TaxableAbstractDecorator implements Taxable{
         return this.decoratedTaxable.getPrice() + this.getTax();
     }
 
-    protected double round(double value) {
-        BigDecimal bd = new BigDecimal(value);
-        bd = bd.setScale(2, RoundingMode.HALF_UP);
+//    protected double round(double value) {
+//        BigDecimal bd = new BigDecimal(value);
+//        bd = bd.setScale(1, RoundingMode.UP);
 //        return Math.round(bd.doubleValue() * 20.0) / 20.0;
-//        return bd.doubleValue();
-        return Math.round(value * 20.0) / 20.0;
+////        return bd.doubleValue();
+////        return Math.round(value * 20.0) / 20.0;
+//    }
+
+    public double round(double value){
+        return round(new BigDecimal(value), new BigDecimal(0.05), RoundingMode.UP).doubleValue();
+    }
+
+    public static BigDecimal round(BigDecimal value, BigDecimal increment,
+                                   RoundingMode roundingMode) {
+        if (increment.signum() == 0) { // 0 increment does not make much sense, but prevent division by 0
+            return value;
+        } else {
+            BigDecimal divided = value.divide(increment, 0, roundingMode);
+            return divided.multiply(increment);
+        }
     }
     
 	@Override
