@@ -1,8 +1,8 @@
-package it.frankdagostino.lm.saletax.entity;
+package it.frankdagostino.lm.saletax.business;
 
-public class ProductImportedDecorator extends ProductAbstractDecorator {
+public class TaxableImportedDecorator extends TaxableAbstractDecorator {
 
-    public ProductImportedDecorator(Taxable taxable){
+    public TaxableImportedDecorator(Taxable taxable){
         super(taxable);
     }
 

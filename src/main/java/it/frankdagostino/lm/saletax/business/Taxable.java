@@ -1,4 +1,4 @@
-package it.frankdagostino.lm.saletax.entity;
+package it.frankdagostino.lm.saletax.business;
 
 public interface Taxable {
     String getDesc();

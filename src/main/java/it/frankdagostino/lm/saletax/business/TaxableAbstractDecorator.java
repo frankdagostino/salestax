@@ -1,12 +1,12 @@
-package it.frankdagostino.lm.saletax.entity;
+package it.frankdagostino.lm.saletax.business;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public abstract class ProductAbstractDecorator implements Taxable{
+public abstract class TaxableAbstractDecorator implements Taxable{
     protected Taxable decoratedTaxable;
 
-    public ProductAbstractDecorator(Taxable decoratedTaxable){
+    public TaxableAbstractDecorator(Taxable decoratedTaxable){
         super();
         this.decoratedTaxable = decoratedTaxable;
     }
@@ -37,7 +37,8 @@ public abstract class ProductAbstractDecorator implements Taxable{
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append(this.getClass().getSimpleName() + " | ");
+		builder.append(this.getClass().getSimpleName());
+		builder.append(" | ");
 		builder.append("desc=");
 		builder.append(getDesc());
 		builder.append(", price=");

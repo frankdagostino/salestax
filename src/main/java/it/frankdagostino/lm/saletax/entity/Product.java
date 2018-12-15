@@ -3,6 +3,7 @@ package it.frankdagostino.lm.saletax.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.frankdagostino.lm.saletax.business.Taxable;
 import lombok.*;
 
 @AllArgsConstructor
@@ -10,7 +11,7 @@ import lombok.*;
 @EqualsAndHashCode
 @Builder
 @Data
-public class Product implements Taxable{
+public class Product implements Taxable {
     
 	private Integer id;
     private ProductCategory category;
@@ -53,6 +54,13 @@ public class Product implements Taxable{
 		products.add(Product.builder().desc("bottle of perfume").category(ProductCategory.OTHER).price(18.99).build());
 		products.add(Product.builder().desc("packet of headache pills").category(ProductCategory.MEDICAL).price(9.75).build());
 		products.add(Product.builder().desc("box of imported chocolates").category(ProductCategory.FOOD).imported(true).price(11.25).build());
+		return products;
+	}
+
+	public static List<Product> mockProducts(){
+		List<Product> products = Product.mockProducts1();
+		products.addAll(Product.mockProducts2());
+		products.addAll(Product.mockProducts3());
 		return products;
 	}
 
