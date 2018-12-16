@@ -23,29 +23,14 @@ public abstract class TaxableAbstractDecorator implements Taxable{
 
     @Override
     public double getFinalPrice() {
-        return this.decoratedTaxable.getPrice() + this.getTax();
+        return Math.round((this.decoratedTaxable.getPrice() + this.getTax()) * 100.0) / 100.0;
     }
 
-//    protected double round(double value) {
-//        BigDecimal bd = new BigDecimal(value);
-//        bd = bd.setScale(1, RoundingMode.UP);
-//        return Math.round(bd.doubleValue() * 20.0) / 20.0;
-////        return bd.doubleValue();
-////        return Math.round(value * 20.0) / 20.0;
-//    }
-
-    public double round(double value){
-        return round(new BigDecimal(value), new BigDecimal(0.05), RoundingMode.UP).doubleValue();
-    }
-
-    public static BigDecimal round(BigDecimal value, BigDecimal increment,
-                                   RoundingMode roundingMode) {
-        if (increment.signum() == 0) { // 0 increment does not make much sense, but prevent division by 0
-            return value;
-        } else {
-            BigDecimal divided = value.divide(increment, 0, roundingMode);
-            return divided.multiply(increment);
-        }
+    public double round(double input){
+        BigDecimal value = new BigDecimal(input);
+        BigDecimal increment = new BigDecimal(0.05);
+        BigDecimal divided = value.divide(increment, 0, RoundingMode.UP);
+        return divided.multiply(increment).doubleValue();
     }
     
 	@Override
